@@ -1,5 +1,5 @@
 export interface Quiz {
-    question: string
-    correct_answer: boolean
-    incorrect_answers: boolean
+    question: string;
+    correct_answer: string;
+    incorrect_answers: string[];
 }

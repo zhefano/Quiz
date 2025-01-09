@@ -8,4 +8,8 @@ export class QuizService {
         .then(res => res.json())
         .then(res => this.quiz = res.results);
     }
+
+    saveQuizToLocalStorage() {
+        localStorage.setItem('quizData', JSON.stringify(this.quiz));
+    }
 }
