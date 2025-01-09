@@ -8,7 +8,7 @@ import { UserFormPageComponent } from './pages/user-form-page/user-form-page.com
 
 export const routes: Routes = [
     { path: '', component: LandingPageComponent },
-    { path: 'new-player', component: UserFormPageComponent },
+    { path: 'new-player', component: UserFormPageComponent }, // Change name to NewPlayerPage?
     { path: 'result', component: ResultPageComponent },
     { path: 'play-quiz', component: PlayQuizPageComponent },
     ];
