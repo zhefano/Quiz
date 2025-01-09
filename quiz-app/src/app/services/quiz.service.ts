@@ -1,15 +1,23 @@
-import { Quiz } from "../models/quiz";
+import { Inject, Injectable } from '@angular/core';
+import { Quiz } from '../models/quiz';
+import { quizData } from '../quizData';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class QuizService {
-    quiz: Quiz[] = [];
+  quiz: Quiz[] = [];
 
-    constructor() {
-        fetch('https://opentdb.com/api.php?amount=10&type=boolean')
-        .then(res => res.json())
-        .then(res => this.quiz = res.results);
-    }
+  constructor() {
+    this.quiz = JSON.parse(quizData);
+    console.log(this.quiz);
 
-    saveQuizToLocalStorage() {
-        localStorage.setItem('quizData', JSON.stringify(this.quiz));
-    }
+    // fetch('https://opentdb.com/api.php?amount=10&type=boolean')
+    // .then(res => res.json())
+    // .then(res => this.quiz = res.results);
+  }
+
+  saveQuizToLocalStorage():void {
+    localStorage.setItem('quizData', JSON.stringify(this.quiz));
+  }
 }
