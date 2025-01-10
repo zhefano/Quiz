@@ -29,7 +29,7 @@ export class UserFormPageComponent {
 	onSubmit(): void {
 		if (this.playerCreationForm.valid) {
 			console.log(this.playerCreationForm.value);
-			this.router.navigate(["/quiz"]);
+			this.router.navigate(["/play-quiz"]);
 		} else {
 			console.log(this.playerCreationForm.value);
 			// error message for user here
