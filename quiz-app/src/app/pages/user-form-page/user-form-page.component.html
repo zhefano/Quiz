@@ -1,1 +1,14 @@
-<p>user-form-page works!</p>
+<div>
+	<form [formGroup]="playerCreationForm" (ngSubmit)="onSubmit()">
+		<label for="username"
+			>Choose a name:
+			<input type="text" id="username" formControlName="username"
+		/></label>
+		@if (playerCreationForm.get("username")?.errors?.["required"]) {
+		<p class="errors?">Username is required</p>
+		} @if (playerCreationForm.get("username")?.errors?.["minlength"]) {
+		<p class="errors?">Username must be at least 2 characters long</p>
+		}
+		<button type="submit">Next</button>
+	</form>
+</div>
