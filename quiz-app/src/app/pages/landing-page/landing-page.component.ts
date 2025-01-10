@@ -1,11 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { PlayerService } from "../../services/player.service";
+import { Player } from "../../models/player";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-landing-page',
-  imports: [],
-  templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.css'
+	selector: "app-landing-page",
+	templateUrl: "./landing-page.component.html",
+	styleUrls: ["./landing-page.component.css"],
 })
-export class LandingPageComponent {
+export class LandingPageComponent implements OnInit {
+	player: Player | null = null;
 
+	constructor(private router: Router, private playerService: PlayerService) {}
+
+	ngOnInit(): void {
+		// Subscribe to currentPlayer updates
+		this.playerService.currentPlayer.subscribe((player) => {
+			this.player = player;
+
+			if (!player) {
+				console.log("No player data found in PlayerService or localStorage");
+				// Redirect to the new player page if no player is found
+				this.router.navigate(["/new-player"]);
+				console.log("Redirecting to new player page");
+			} else {
+				console.log("Player data from PlayerService:", this.player);
+			}
+		});
+	}
 }

@@ -6,6 +6,8 @@ import {
 	Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
+import { PlayerService } from "../../services/player.service";
+import { Player } from "../../models/player";
 
 @Component({
 	selector: "app-new-player-page",
@@ -15,7 +17,11 @@ import { Router } from "@angular/router";
 })
 export class NewPlayerPageComponent {
 	playerCreationForm: FormGroup;
-	constructor(private formBuilder: FormBuilder, private router: Router) {
+	constructor(
+		private formBuilder: FormBuilder,
+		private router: Router,
+		private playerService: PlayerService
+	) {
 		this.playerCreationForm = this.formBuilder.group({
 			username: ["", [Validators.required, Validators.minLength(2)]],
 			quizPlayedAmount: 0,
@@ -28,8 +34,14 @@ export class NewPlayerPageComponent {
 	}
 	onSubmit(): void {
 		if (this.playerCreationForm.valid) {
-			console.log(this.playerCreationForm.value);
-			this.router.navigate(["/play-quiz"]);
+			// Sparar datan från formuläret i playerData som är en "Player"
+			const playerData: Player = this.playerCreationForm.value;
+
+			// Skapar en ny spelare med hjälp av playerService
+			this.playerService.createPlayer(playerData);
+
+			// Skickas till "landing page" 
+			this.router.navigate([""]);
 		} else {
 			console.log(this.playerCreationForm.value);
 			// error message for user here
