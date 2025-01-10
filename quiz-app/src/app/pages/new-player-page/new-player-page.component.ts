@@ -8,12 +8,12 @@ import {
 import { Router } from "@angular/router";
 
 @Component({
-	selector: "app-user-form-page",
+	selector: "app-new-player-page",
 	imports: [ReactiveFormsModule],
-	templateUrl: "./user-form-page.component.html",
-	styleUrl: "./user-form-page.component.css",
+	templateUrl: "./new-player-page.component.html",
+	styleUrl: "./new-player-page.component.css",
 })
-export class UserFormPageComponent {
+export class NewPlayerPageComponent {
 	playerCreationForm: FormGroup;
 	constructor(private formBuilder: FormBuilder, private router: Router) {
 		this.playerCreationForm = this.formBuilder.group({
