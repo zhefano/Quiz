@@ -1,1 +1,18 @@
-<p>play-quiz-page works!</p>
+@if (quizQuestions.length > 0) {
+  <app-quiz-component
+    [quiz]="currentQuiz"
+    (correctAnswer)="incrementCorrectAnswers()"
+  ></app-quiz-component>
+  <div>
+    <button (click)="previousQuiz()" [disabled]="currentQuizIndex === 0">
+      Previous
+    </button>
+    <button
+      (click)="nextQuiz()"
+      [disabled]="currentQuizIndex === quizQuestions.length - 1"
+    >
+      Next
+    </button>
+    <p>Antal korrekta svar: {{ correctAnswersCount }}</p>
+  </div>
+}
