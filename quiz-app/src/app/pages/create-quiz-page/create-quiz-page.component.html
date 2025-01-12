@@ -1,1 +1,12 @@
-<p>create-quiz-page works!</p>
+<div class="create-quiz-page">
+  <div *ngIf="!currentQuiz">
+    <app-create-quiz (quizCreated)="startQuiz($event)"></app-create-quiz>
+  </div>
+  <div *ngIf="currentQuiz">
+    <p *ngIf="!quizFinished">
+      {{ currentQuiz.questions[currentQuestionIndex].question }}
+    </p>
+    <div *ngIf="!quizFinished">
+      <button (click)="answerQuestion(true)">True</button>
+      <button (click)="answerQuestion(false)">False</button>
+</div>

@@ -1,0 +1,38 @@
+<div class="create-quiz">
+  <h1>Create and play quiz</h1>
+  
+  <div *ngIf="!quizStarted">
+    <div class="question-form">
+      <input
+        type="text"
+        placeholder="Write a question"
+        [(ngModel)]="newQuestion"
+        class="question-input"
+      />
+      <label>
+        <input type="radio" [(ngModel)]="newAnswer" [value]="true" /> True
+      </label>
+      <label>
+        <input type="radio" [(ngModel)]="newAnswer" [value]="false" /> False
+      </label>
+      <button (click)="addQuestion()">Add question</button>
+    </div>
+    <ul>
+      <li *ngFor="let question of questions; let i = index">
+        {{ question.question }} - {{ question.answer ? 'True' : 'False' }}
+        <button (click)="deleteQuestion(i)">Delete</button>
+      </li>
+    </ul>
+    <button (click)="playQuiz()" class="play-quiz">Play Quiz</button>
+  </div>
+
+  <div *ngIf="quizStarted">
+    <p>{{ questions[currentQuestionIndex].question }}</p>
+    <button (click)="checkAnswer(true)">True</button>
+    <button (click)="checkAnswer(false)">False</button>
+
+    <p *ngIf="feedbackMessage" [ngClass]="feedbackClass">
+      {{ feedbackMessage }}
+    </p>
+  </div>
+</div>
