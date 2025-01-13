@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { QuizComponentComponent } from '../../components/quiz-component/quiz-component.component';
 import { QuizService } from '../../services/quiz.service';
 import { Quiz } from '../../models/quiz';
+import { PlayerService } from '../../services/player.service';
+import { LeaderboardService } from '../../services/leaderboard.service';
 
 @Component({
   selector: 'app-play-quiz-page',
@@ -11,10 +13,18 @@ import { Quiz } from '../../models/quiz';
 })
 export class PlayQuizPageComponent {
   private quizService: QuizService;
+  private playerService: PlayerService;
+  private leaderboardService: LeaderboardService;
   @ViewChild(QuizComponentComponent) quizComponent!: QuizComponentComponent; // Hämta referens
 
-  constructor(quizService: QuizService) {
+  constructor(
+    quizService: QuizService,
+    playerService: PlayerService,
+    leaderboardService: LeaderboardService
+  ) {
     this.quizService = quizService;
+    this.playerService = playerService;
+    this.leaderboardService = leaderboardService;
   }
 
   get quizQuestions(): Quiz[] {
@@ -46,5 +56,23 @@ export class PlayQuizPageComponent {
   }
   incrementCorrectAnswers(): void {
     this.correctAnswersCount++;
+  }
+
+  /* En metod som avslutar quizet och sparar spelarens Poäng
+  hämtar den aktuella spelaren från localStorage
+  lägger till poängen spelaren fått via leaderboardService
+  loggar sedaan en bekräftelse på att koden funkar */
+
+  finishQuiz(): void {
+    const player = this.playerService.getPlayerFromLocalStorage();
+    if (player) {
+      const playerName = player.username;
+      this.leaderboardService.addScore(playerName, this.correctAnswersCount);
+      console.log(
+        `Poäng sparad för spelare: ${playerName}, Poäng: ${this.correctAnswersCount}`
+      );
+    } else {
+      console.warn('Ingen spelare hittades i localStorage.');
+    }
   }
 }
