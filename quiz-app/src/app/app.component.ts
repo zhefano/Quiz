@@ -5,10 +5,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { QuizService } from './services/quiz.service';
 import { Quiz } from './models/quiz';
 import { CommonModule } from '@angular/common';
+import { LeaderboardComponent } from "./components/leaderboard/leaderboard.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FooterComponent, HeaderComponent, CommonModule],
+  imports: [RouterOutlet, FooterComponent, HeaderComponent, CommonModule, LeaderboardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
