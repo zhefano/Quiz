@@ -6,6 +6,7 @@ import { PlayerService } from '../../services/player.service';
 
 @Component({
   selector: 'app-create-quiz',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './create-quiz.component.html',
   styleUrls: ['./create-quiz.component.css'],
@@ -20,7 +21,7 @@ export class CreateQuizComponent {
   feedbackClass: string = '';
   quizStarted: boolean = false;
   currentQuestionIndex: number = 0;
-  score: number = 0; //Variabel som håller koll på poängen
+  score: number = 0; // Variabel som håller koll på poängen
 
   //Hämtar in leaderboardService samt playerService
   constructor(
@@ -62,7 +63,7 @@ export class CreateQuizComponent {
         this.feedbackClass = 'correct-answer';
         this.score++; // vid korrekt svar, öka poäng med 1
       } else {
-        this.feedbackMessage = 'Wrong ansver! Try again.';
+        this.feedbackMessage = 'Wrong answer! Try again.';
         this.feedbackClass = 'incorrect-answer';
       }
 
@@ -73,17 +74,14 @@ export class CreateQuizComponent {
         this.saveScore(); //Anropar savescore metoden när quizet är färdigt
       }
     }
-  }
-
+  }   
   //samma metod som play-quiz använder
   saveScore() {
     const player = this.playerService.getPlayerFromLocalStorage();
     if (player) {
       const playerName = player.username;
       this.leaderboardService.addScore(playerName, this.score);
-      console.log(
-        `Poäng sparad för spelare: ${playerName}, Poäng: ${this.score}`
-      );
+      console.log(`Poäng sparad för spelare: ${playerName}, Poäng: ${this.score}`);
     } else {
       console.warn('Ingen spelare hittades i localStorage.');
     }

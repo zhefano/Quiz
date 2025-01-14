@@ -1,15 +1,19 @@
 <div>
 	<h2>NEW PLAYER</h2>
 	<form [formGroup]="playerCreationForm" (ngSubmit)="onSubmit()">
-		<label for="username"
-			>Choose a name:
-			<input type="text" id="username" formControlName="username"
-		/></label>
-		@if (playerCreationForm.get("username")?.errors?.["required"]) {
-		<p class="errors?">Username is required</p>
-		} @if (playerCreationForm.get("username")?.errors?.["minlength"]) {
-		<p class="errors?">Username must be at least 2 characters long</p>
-		}
-		<button type="submit">Next</button>
+	  <label for="username">
+		Choose a name:
+		<input type="text" id="username" formControlName="username" />
+	  </label>
+  
+	  <!-- Ersätt @if-syntax med Angulars *ngIf -->
+	  <div class="errors" *ngIf="playerCreationForm.get('username')?.errors?.['required']">
+		Username is required
+	  </div>
+	  <div class="errors" *ngIf="playerCreationForm.get('username')?.errors?.['minlength']">
+		Username must be at least 2 characters long
+	  </div>
+  
+	  <button type="submit">Next</button>
 	</form>
-</div>
+  </div>

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-quiz-page',
+  standalone: true,
   imports: [CommonModule, CreateQuizComponent],
   templateUrl: './create-quiz-page.component.html',
   styleUrls: ['./create-quiz-page.component.css'],
@@ -22,8 +23,7 @@ export class CreateQuizPageComponent {
   answerQuestion(isTrue: boolean) {
     if (this.currentQuiz) {
       const correctAnswer = this.currentQuiz.questions[this.currentQuestionIndex].answer;
-      if (isTrue === correctAnswer) {
-      }
+      // Här kan du valfritt kolla om isTrue === correctAnswer
       this.currentQuestionIndex++;
       if (this.currentQuestionIndex >= this.currentQuiz.questions.length) {
         this.quizFinished = true;

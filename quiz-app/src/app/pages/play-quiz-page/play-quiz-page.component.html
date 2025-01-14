@@ -1,4 +1,5 @@
-@if (quizQuestions.length > 0) {
+<!-- Ersätt @if-syntax med *ngIf -->
+<div *ngIf="quizQuestions.length > 0">
   <app-quiz-component
     [quiz]="currentQuiz"
     (correctAnswer)="incrementCorrectAnswers()"
@@ -16,4 +17,4 @@
     <button (click)="finishQuiz()">Save Score</button>
     <p>Antal korrekta svar: {{ correctAnswersCount }}</p>
   </div>
-}
+</div>

@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
-import { LeaderboardContent } from '../../models/leaderboard';
-import { LeaderboardService } from '../../services/leaderboard.service';
 import { CommonModule } from '@angular/common';
+import { LeaderboardService } from '../../services/leaderboard.service';
+import { LeaderboardContent } from '../../models/leaderboard';
 
 @Component({
   selector: 'app-leaderboard',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './leaderboard.component.html',
-  styleUrl: './leaderboard.component.css'
+  styleUrls: ['./leaderboard.component.css'],
 })
 export class LeaderboardComponent {
-  leaderboard: LeaderboardContent[] = []
+  leaderboard: LeaderboardContent[] = [];
 
-  constructor( private leaderboardService: LeaderboardService) {
-    this.leaderboard = this.leaderboardService.leaderboard
+  constructor(private leaderboardService: LeaderboardService) {
+    this.leaderboard = this.leaderboardService.leaderboard;
   }
-
 }

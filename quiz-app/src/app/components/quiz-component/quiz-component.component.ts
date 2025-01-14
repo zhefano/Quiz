@@ -10,15 +10,15 @@ import { Quiz } from '../../models/quiz';
 
 @Component({
   selector: 'app-quiz-component',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './quiz-component.component.html',
-  styleUrl: './quiz-component.component.css',
+  styleUrls: ['./quiz-component.component.css'],
 })
 export class QuizComponentComponent {
   @Input() quiz: Quiz | null = null;
   @Output() correctAnswer = new EventEmitter<void>(); // Event för korrekta svar
 
-  userAnswer: string | null = null;
   feedbackClass: string = '';
   feedbackMessage: string = '';
 
