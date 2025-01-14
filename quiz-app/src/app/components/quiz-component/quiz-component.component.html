@@ -3,8 +3,12 @@
     <div>
       <p>{{ quiz.question }}</p>
 
-      <button (click)="checkAnswer(true)">True</button>
-      <button (click)="checkAnswer(false)">False</button>
+      <button (click)="checkAnswer(true)" [disabled]="isButtonDisabled">
+        True
+      </button>
+      <button (click)="checkAnswer(false)" [disabled]="isButtonDisabled">
+        False
+      </button>
       <!--<p>{{ quiz.correct_answer }}</p>-->
 
       @if (feedbackMessage) {

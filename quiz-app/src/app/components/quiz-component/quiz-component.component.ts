@@ -5,8 +5,10 @@ import {
   SimpleChanges,
   EventEmitter,
   Output,
+  ViewChild,
 } from '@angular/core';
 import { Quiz } from '../../models/quiz';
+import { PlayQuizPageComponent } from '../../pages/play-quiz-page/play-quiz-page.component';
 
 @Component({
   selector: 'app-quiz-component',
@@ -17,10 +19,12 @@ import { Quiz } from '../../models/quiz';
 export class QuizComponentComponent {
   @Input() quiz: Quiz | null = null;
   @Output() correctAnswer = new EventEmitter<void>(); // Event för korrekta svar
+  @ViewChild(PlayQuizPageComponent) quizPageComponent!: PlayQuizPageComponent;
 
   userAnswer: string | null = null;
   feedbackClass: string = '';
   feedbackMessage: string = '';
+  isButtonDisabled: boolean = false;
 
   checkAnswer(isTrue: boolean): void {
     if (this.quiz) {
@@ -35,6 +39,8 @@ export class QuizComponentComponent {
         this.feedbackClass = 'incorrect-answer';
       }
     }
+    this.isButtonDisabled = true;
+    //this.quizPageComponent.nextQuiz();
   }
   resetFeedbackMessage(): void {
     this.feedbackMessage = '';

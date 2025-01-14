@@ -32,6 +32,7 @@ export class PlayQuizPageComponent {
   // Navigera till nästa quiz
   nextQuiz() {
     if (this.currentQuizIndex < this.quizQuestions.length - 1) {
+      this.quizComponent.isButtonDisabled = false;
       this.currentQuizIndex++;
       this.quizComponent.resetFeedbackMessage(); // Nollställ feedbacken
     }
@@ -40,6 +41,7 @@ export class PlayQuizPageComponent {
   // Navigera till föregående quiz
   previousQuiz() {
     if (this.currentQuizIndex > 0) {
+      this.quizComponent.isButtonDisabled = false;
       this.currentQuizIndex--;
       this.quizComponent.resetFeedbackMessage(); // Nollställ feedbacken
     }
