@@ -39,4 +39,10 @@ export class PlayerService {
     const playerData = localStorage.getItem('player');
     return !!playerData;
   }
+
+  // Återställer spelarens data
+  resetPlayer(): void {
+    localStorage.removeItem('player');
+    this.currentPlayerSubject.next(null);
+  }
 }

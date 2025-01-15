@@ -20,4 +20,9 @@ export class QuizService {
   saveQuizToLocalStorage():void {
     localStorage.setItem('quizData', JSON.stringify(this.quiz));
   }
+
+  resetQuiz(): void {
+    localStorage.removeItem('quizData');
+    this.quiz = JSON.parse(quizData); 
+  }
 }

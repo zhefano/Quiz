@@ -1,20 +1,29 @@
 import { Injectable } from '@angular/core';
 import { LeaderboardContent } from '../models/leaderboard';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LeaderboardService {
-  leaderboard: LeaderboardContent[] = [];
+  private leaderboardSubject = new BehaviorSubject<LeaderboardContent[]>([]);
+  leaderboard$ = this.leaderboardSubject.asObservable();
 
   constructor() {
+    this.loadLeaderboard();
+  }
+
+  private loadLeaderboard(): void {
     const savedLeaderboard = localStorage.getItem('leaderboard');
     if (savedLeaderboard) {
-      this.leaderboard = JSON.parse(savedLeaderboard);
+      this.leaderboardSubject.next(JSON.parse(savedLeaderboard));
     }
   }
 
-  // Lägg till poäng, namn och spara i localStorage
+  get leaderboard(): LeaderboardContent[] {
+    return this.leaderboardSubject.value;
+  }
+
   addScore(name: string, score: number): void {
     const newPlayer: LeaderboardContent = {
       name,
@@ -22,16 +31,25 @@ export class LeaderboardService {
       date: new Date().toISOString(),
     };
 
-    //Lägger till den nya poängen
-    //Sorterar listan etfer poäng
-    //sparar listan
-    this.leaderboard.push(newPlayer);
-    this.leaderboard.sort((a, b) => b.score - a.score);
+    const currentLeaderboard = this.leaderboardSubject.value;
+    const updatedLeaderboard = [...currentLeaderboard, newPlayer];
+    
+    // Sortera efter poäng
+    updatedLeaderboard.sort((a, b) => b.score - a.score);
+    
+    // Uppdatera subject och spara till localStorage
+    this.leaderboardSubject.next(updatedLeaderboard);
     this.saveLeaderboard();
+    
+    console.log('Updated leaderboard:', updatedLeaderboard); // Debug log
   }
 
-  // Spara leaderboarden i localStorage
-  saveLeaderboard(): void {
-    localStorage.setItem('leaderboard', JSON.stringify(this.leaderboard));
+  private saveLeaderboard(): void {
+    localStorage.setItem('leaderboard', JSON.stringify(this.leaderboardSubject.value));
+  }
+
+  resetLeaderboard(): void {
+    this.leaderboardSubject.next([]);
+    localStorage.removeItem('leaderboard');
   }
 }
