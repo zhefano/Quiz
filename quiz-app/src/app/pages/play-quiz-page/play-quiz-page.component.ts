@@ -62,7 +62,9 @@ export class PlayQuizPageComponent {
     if (player) {
       const playerName = player.username;
       this.leaderboardService.addScore(playerName, this.correctAnswersCount);
-      console.log(`Saving score for player: ${playerName}, Score: ${this.correctAnswersCount}`);
+      console.log(
+        `Saving score for player: ${playerName}, Score: ${this.correctAnswersCount}`
+      );
       this.quizFinished = true;
       alert(`Quiz completed! Your score: ${this.correctAnswersCount}`);
       // Valfritt omdirigera till topplistan eller startsidan

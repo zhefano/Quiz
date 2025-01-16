@@ -17,14 +17,14 @@ export class LandingPageComponent implements OnInit {
   constructor(private router: Router, private playerService: PlayerService) {}
 
   ngOnInit(): void {
-		// Subscribe to currentPlayer updates
+    // Subscribe to currentPlayer updates
     this.playerService.currentPlayer.subscribe((player) => {
       this.player = player;
 
       if (!player) {
         console.log('No player data found in PlayerService or localStorage');
         this.router.navigate(['/new-player']);
-        console.log("Redirecting to new player page");
+        console.log('Redirecting to new player page');
       } else {
         console.log('Player data from PlayerService:', this.player);
       }

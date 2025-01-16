@@ -3,13 +3,13 @@
   <div>
     <p>{{ quiz.question }}</p>
 
-      <button (click)="checkAnswer(true)" [disabled]="isButtonDisabled">
-        True
-      </button>
-      <button (click)="checkAnswer(false)" [disabled]="isButtonDisabled">
-        False
-      </button>
-      <!--<p>{{ quiz.correct_answer }}</p>-->
+    <button (click)="checkAnswer(true)" [disabled]="isButtonDisabled">
+      True
+    </button>
+    <button (click)="checkAnswer(false)" [disabled]="isButtonDisabled">
+      False
+    </button>
+    <!--<p>{{ quiz.correct_answer }}</p>-->
 
     <!-- Byt ut @if mot *ngIf -->
     <p *ngIf="feedbackMessage" [ngClass]="feedbackClass">

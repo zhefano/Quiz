@@ -33,19 +33,22 @@ export class LeaderboardService {
 
     const currentLeaderboard = this.leaderboardSubject.value;
     const updatedLeaderboard = [...currentLeaderboard, newPlayer];
-    
+
     // Sortera efter poäng
     updatedLeaderboard.sort((a, b) => b.score - a.score);
-    
+
     // Uppdatera subject och spara till localStorage
     this.leaderboardSubject.next(updatedLeaderboard);
     this.saveLeaderboard();
-    
+
     console.log('Updated leaderboard:', updatedLeaderboard); // Debug log
   }
 
   private saveLeaderboard(): void {
-    localStorage.setItem('leaderboard', JSON.stringify(this.leaderboardSubject.value));
+    localStorage.setItem(
+      'leaderboard',
+      JSON.stringify(this.leaderboardSubject.value)
+    );
   }
 
   resetLeaderboard(): void {

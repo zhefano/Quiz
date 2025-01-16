@@ -74,14 +74,16 @@ export class CreateQuizComponent {
         this.saveScore(); //Anropar savescore metoden när quizet är färdigt
       }
     }
-  }   
+  }
   //samma metod som play-quiz använder
   saveScore() {
     const player = this.playerService.getPlayerFromLocalStorage();
     if (player) {
       const playerName = player.username;
       this.leaderboardService.addScore(playerName, this.score);
-      console.log(`Poäng sparad för spelare: ${playerName}, Poäng: ${this.score}`);
+      console.log(
+        `Poäng sparad för spelare: ${playerName}, Poäng: ${this.score}`
+      );
     } else {
       console.warn('Ingen spelare hittades i localStorage.');
     }

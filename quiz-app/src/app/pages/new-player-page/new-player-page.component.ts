@@ -5,13 +5,13 @@ import {
   FormGroup,
   ReactiveFormsModule,
   Validators,
-} from "@angular/forms";
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { PlayerService } from '../../services/player.service';
 import { Player } from '../../models/player';
 
 @Component({
-  selector: "app-new-player-page",
+  selector: 'app-new-player-page',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './new-player-page.component.html',
@@ -38,13 +38,12 @@ export class NewPlayerPageComponent {
 
   onSubmit(): void {
     if (this.playerCreationForm.valid) {
-
-			// Sparar datan från formuläret i playerData som är en "Player"
-			const playerData: Player = this.playerCreationForm.value;
-	 		// Skapar en ny spelare med hjälp av playerService
+      // Sparar datan från formuläret i playerData som är en "Player"
+      const playerData: Player = this.playerCreationForm.value;
+      // Skapar en ny spelare med hjälp av playerService
 
       this.playerService.createPlayer(playerData);
-	  	// Skickas till "landing page" 
+      // Skickas till "landing page"
 
       this.router.navigate(['']);
     } else {

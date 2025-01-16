@@ -1,6 +1,6 @@
 <div class="create-quiz">
   <h1>Create and play quiz</h1>
-  
+
   <div *ngIf="!quizStarted">
     <div class="question-form">
       <input
@@ -19,7 +19,7 @@
     </div>
     <ul>
       <li *ngFor="let question of questions; let i = index">
-        {{ question.question }} - {{ question.answer ? 'True' : 'False' }}
+        {{ question.question }} - {{ question.answer ? "True" : "False" }}
         <button (click)="deleteQuestion(i)">Delete</button>
       </li>
     </ul>

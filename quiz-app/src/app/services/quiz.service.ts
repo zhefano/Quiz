@@ -10,19 +10,14 @@ export class QuizService {
 
   constructor() {
     this.quiz = JSON.parse(quizData);
-    console.log(this.quiz);
-
-    // fetch('https://opentdb.com/api.php?amount=10&type=boolean')
-    // .then(res => res.json())
-    // .then(res => this.quiz = res.results);
   }
 
-  saveQuizToLocalStorage():void {
+  saveQuizToLocalStorage(): void {
     localStorage.setItem('quizData', JSON.stringify(this.quiz));
   }
 
   resetQuiz(): void {
     localStorage.removeItem('quizData');
-    this.quiz = JSON.parse(quizData); 
+    this.quiz = JSON.parse(quizData);
   }
 }

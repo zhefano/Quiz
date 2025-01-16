@@ -22,7 +22,8 @@ export class CreateQuizPageComponent {
 
   answerQuestion(isTrue: boolean) {
     if (this.currentQuiz) {
-      const correctAnswer = this.currentQuiz.questions[this.currentQuestionIndex].answer;
+      const correctAnswer =
+        this.currentQuiz.questions[this.currentQuestionIndex].answer;
       // Här kan du valfritt kolla om isTrue === correctAnswer
       this.currentQuestionIndex++;
       if (this.currentQuestionIndex >= this.currentQuiz.questions.length) {
