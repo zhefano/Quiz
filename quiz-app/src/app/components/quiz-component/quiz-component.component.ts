@@ -12,16 +12,16 @@ import { PlayQuizPageComponent } from '../../pages/play-quiz-page/play-quiz-page
 
 @Component({
   selector: 'app-quiz-component',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './quiz-component.component.html',
-  styleUrl: './quiz-component.component.css',
+  styleUrls: ['./quiz-component.component.css'],
 })
 export class QuizComponentComponent {
   @Input() quiz: Quiz | null = null;
   @Output() correctAnswer = new EventEmitter<void>(); // Event för korrekta svar
   @ViewChild(PlayQuizPageComponent) quizPageComponent!: PlayQuizPageComponent;
 
-  userAnswer: string | null = null;
   feedbackClass: string = '';
   feedbackMessage: string = '';
   isButtonDisabled: boolean = false;

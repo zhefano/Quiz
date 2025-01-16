@@ -1,26 +1,26 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { QuizService } from './services/quiz.service';
-import { Quiz } from './models/quiz';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FooterComponent, HeaderComponent, CommonModule],
+  standalone: true, // Viktigt för att använda .imports
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    FooterComponent,
+    HeaderComponent,
+    LeaderboardComponent
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'quiz-app';
-  private quizService: QuizService;
 
-  constructor(quizService: QuizService) {
-    this.quizService = quizService;
-  }
-
-  get quizQuestions(): Quiz[] {
-    return this.quizService.quiz;
-  }
+  constructor(private quizService: QuizService) {}
 }

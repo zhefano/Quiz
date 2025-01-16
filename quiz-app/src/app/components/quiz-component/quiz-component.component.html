@@ -1,7 +1,7 @@
-<div class="quiz-component">
-  @if (quiz) {
-    <div>
-      <p>{{ quiz.question }}</p>
+<!-- Byt ut @if mot *ngIf -->
+<div class="quiz-component" *ngIf="quiz">
+  <div>
+    <p>{{ quiz.question }}</p>
 
       <button (click)="checkAnswer(true)" [disabled]="isButtonDisabled">
         True
@@ -11,9 +11,9 @@
       </button>
       <!--<p>{{ quiz.correct_answer }}</p>-->
 
-      @if (feedbackMessage) {
-        <p [ngClass]="feedbackClass">{{ feedbackMessage }}</p>
-      }
-    </div>
-  }
+    <!-- Byt ut @if mot *ngIf -->
+    <p *ngIf="feedbackMessage" [ngClass]="feedbackClass">
+      {{ feedbackMessage }}
+    </p>
+  </div>
 </div>

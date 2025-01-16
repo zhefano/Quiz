@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-result-page',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './result-page.component.html',
-  styleUrl: './result-page.component.css'
+  styleUrls: ['./result-page.component.css'],
 })
-export class ResultPageComponent {
-
-}
+export class ResultPageComponent {}
