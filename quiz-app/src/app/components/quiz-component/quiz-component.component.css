@@ -8,13 +8,29 @@
   margin: 10px auto;
   border: 0.5px solid black;
   border-radius: 20px;
-  box-shadow:
-    0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 button {
   margin: 0.75rem;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
+
+button:last-child {
+  background-color: red;
+}
+
+.quiz-component button[disabled] {
+  background-color: #c0c0c0;
+  cursor: not-allowed;
+}
+
 .correct-answer {
   color: green;
 }
@@ -22,3 +38,4 @@ button {
 .incorrect-answer {
   color: red;
 }
+
